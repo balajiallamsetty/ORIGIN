@@ -824,7 +824,7 @@ p {
 }
 
 /* --------------------------------------------------------------------------
-   Authors process
+   Process workflow
    -------------------------------------------------------------------------- */
 
 .checklist {
@@ -1257,4 +1257,82 @@ body.nav-open {
         opacity: 1;
         transform: none;
     }
+}
+
+/* --------------------------------------------------------------------------
+   FAQ Details/Summary
+   -------------------------------------------------------------------------- */
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    max-width: 54rem;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 1.5rem 1.75rem;
+    transition: box-shadow var(--ease), border-color var(--ease);
+}
+
+.faq-item:hover {
+    border-color: var(--teal);
+    box-shadow: var(--shadow-hover);
+}
+
+.faq-item summary {
+    font-family: var(--font-editorial);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--primary);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-item summary::after {
+    content: "+";
+    font-family: var(--font-ui);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--teal);
+    margin-left: 1rem;
+    line-height: 1;
+}
+
+.faq-item[open] summary::after {
+    content: "−";
+}
+
+.faq-item p {
+    margin-top: 1rem;
+    margin-bottom: 0;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.form-field select {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.8rem 0.9rem;
+    font: inherit;
+    color: var(--text);
+    background: var(--white);
+}
+
+.form-field select:focus-visible {
+    outline: 2px solid var(--accent);
+    border-color: transparent;
 }

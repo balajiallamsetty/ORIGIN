@@ -140,19 +140,67 @@
                 return;
             }
 
-            form.reset();
-            Object.keys(fields).forEach(function (key) {
-                fields[key].setAttribute("aria-invalid", "false");
-                var error = document.getElementById(fields[key].id + "-error");
-                if (error) {
-                    error.textContent = "";
-                }
-            });
-
-            if (status) {
-                status.classList.add("is-visible");
-                status.focus();
+            var submitBtn = form.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = "Sending...";
             }
+
+            function resetForm() {
+                form.reset();
+                Object.keys(fields).forEach(function (key) {
+                    fields[key].setAttribute("aria-invalid", "false");
+                    var error = document.getElementById(fields[key].id + "-error");
+                    if (error) {
+                        error.textContent = "";
+                    }
+                });
+            }
+
+            // Google Sheets Script Web App URL
+            // Replace with your deployed Google Apps Script Web App URL:
+            var GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxQsyBrY5iOPAvYLfqHHZUoooepeZcSv84a5l5tge1wHJC1nqrzqpkch7ac88GrMUTO5A/exec";
+            if (!GOOGLE_SCRIPT_URL) {
+                // If script URL is not configured yet, display success confirmation for testing
+                if (status) {
+                    status.classList.add("is-visible");
+                    status.focus();
+                }
+                resetForm();
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = "Send Inquiry";
+                }
+                return;
+            }
+
+            var formData = new URLSearchParams(new FormData(form));
+
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: "POST",
+                mode: "no-cors",
+                body: formData
+            })
+                .then(function () {
+                    if (status) {
+                        status.classList.add("is-visible");
+                        status.focus();
+                    }
+                    resetForm();
+                })
+                .catch(function () {
+                    if (status) {
+                        status.textContent = "Something went wrong. Please try again or email us directly.";
+                        status.classList.add("is-visible");
+                        status.focus();
+                    }
+                })
+                .finally(function () {
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = "Send Inquiry";
+                    }
+                });
         });
     }
 })();
