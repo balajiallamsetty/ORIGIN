@@ -438,10 +438,8 @@ p {
 .hero,
 .page-hero {
     width: 100%;
-    background:
-        linear-gradient(180deg, rgba(10, 25, 47, 0.15), transparent 18%),
-        radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.16), transparent 28%),
-        linear-gradient(135deg, var(--primary) 0%, var(--secondary) 58%, #0b3a3a 100%);
+    background-color: #0B1F35;
+    background: #0B1F35;
     color: var(--white);
 }
 
@@ -480,19 +478,76 @@ p {
     min-width: 0;
 }
 
+.hero-copy {
+    position: relative;
+    z-index: 1;
+}
+
+.hero .eyebrow,
+.page-hero .eyebrow {
+    color: #34D399;
+}
+
 .hero h1,
 .page-hero h1 {
-    color: var(--white);
+    color: #FFFFFF;
+}
+
+.hero .editorial {
+    font-family: var(--font-editorial);
+    font-size: clamp(1.15rem, 2vw, 1.35rem);
+    font-weight: 700;
+    font-style: italic;
+    line-height: 1.35;
+    color: #FFFFFF;
+    margin: 0 0 1.25rem;
 }
 
 .hero .lede,
 .page-hero .lede {
-    color: rgba(248, 250, 252, 0.84);
+    font-size: clamp(1.05rem, 1.6vw, 1.15rem);
+    line-height: 1.7;
+    color: #E2E8F0;
+    margin: 0 0 1rem;
+}
+
+.hero .hero-desc,
+.hero-copy p {
+    color: #CBD5E1;
+    font-size: 1.025rem;
+    line-height: 1.7;
+    margin: 0 0 1.25rem;
+}
+
+.hero-copy .eyebrow {
+    color: #34D399;
+    margin-bottom: 0.75rem;
+}
+
+.hero-copy .editorial {
+    color: #FFFFFF;
+}
+
+.hero-copy .lede {
+    color: #E2E8F0;
+}
+
+.hero-copy .highlight-box {
+    margin-top: 1.35rem;
+    margin-bottom: 0;
+    padding: 1.05rem 1.25rem;
+    border-left: 4px solid var(--accent);
+    background: #ECFDF5;
+    border-radius: 0 12px 12px 0;
+    color: #0B1F35;
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.5;
 }
 
 .hero em {
     font-style: italic;
-    color: #a7f3d0;
+    color: #34D399;
 }
 
 .page-hero {
@@ -589,11 +644,12 @@ p {
 .highlight-box {
     margin-top: 1.5rem;
     padding: 1.15rem 1.25rem;
-    border-left: 3px solid var(--accent);
+    border-left: 4px solid var(--accent);
     background: #ECFDF5;
     border-radius: 0 12px 12px 0;
-    color: var(--primary);
-    font-weight: 500;
+    color: #0B1F35;
+    font-weight: 600;
+    line-height: 1.55;
 }
 
 /* --------------------------------------------------------------------------
@@ -1332,6 +1388,15 @@ body.nav-open {
     .split {
         grid-template-columns: 1fr;
     }
+
+    .hero {
+        min-height: 0;
+        padding: 3.5rem 0 4rem;
+    }
+
+    .hero-grid {
+        gap: 2.5rem;
+    }
 }
 
 @media (max-width: 860px) {
@@ -1440,7 +1505,35 @@ body.nav-open {
 
     .hero {
         min-height: 0;
-        padding: 2.8rem 0 3.2rem;
+        padding: 2.75rem 0 3.25rem;
+    }
+
+    .hero-grid {
+        gap: 2rem;
+    }
+
+    .hero .editorial {
+        font-size: 1.15rem;
+        margin-bottom: 1rem;
+    }
+
+    .hero .lede {
+        font-size: 1.05rem;
+        line-height: 1.65;
+        margin-bottom: 0.85rem;
+    }
+
+    .hero .hero-desc,
+    .hero-copy p {
+        font-size: 0.98rem;
+        line-height: 1.65;
+        margin-bottom: 1rem;
+    }
+
+    .hero-copy .highlight-box {
+        padding: 0.85rem 1rem;
+        font-size: 0.95rem;
+        margin-top: 1.15rem;
     }
 
     .card-grid,
@@ -1468,6 +1561,58 @@ body.nav-open {
 
     .footer-grid {
         gap: 1.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        width: min(100% - 2rem, var(--max));
+    }
+
+    .hero {
+        padding: 2.25rem 0 2.75rem;
+    }
+
+    .hero h1 {
+        font-size: clamp(1.75rem, 7vw, 2.15rem);
+        line-height: 1.22;
+        margin-bottom: 0.75rem;
+    }
+
+    .hero .editorial {
+        font-size: 1.05rem;
+        margin-bottom: 0.9rem;
+        line-height: 1.4;
+    }
+
+    .hero .lede {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 0.8rem;
+    }
+
+    .hero .hero-desc,
+    .hero-copy p {
+        font-size: 0.92rem;
+        line-height: 1.6;
+        margin-bottom: 0.9rem;
+    }
+
+    .hero-copy .highlight-box {
+        padding: 0.8rem 0.95rem;
+        font-size: 0.9rem;
+        line-height: 1.45;
+        margin-top: 1rem;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
     }
 }
 
